@@ -17,6 +17,7 @@
         },
         {
             "path": "./projects/x_template"
+<<<<<<< HEAD
         },
         {
             "path": "projects/Ejercicio4_proy1"
@@ -29,6 +30,8 @@
         },
         {
             "path": "projects/abersianda"
+=======
+>>>>>>> parent of 9fdbccd (semana 2)
         }
     ],
     "settings": {
@@ -83,8 +86,7 @@
             "ili9341.h": "c",
             "soc_caps.h": "c",
             "mpu6050.h": "c",
-            "i2c_mcu.h": "c",
-            "stdio.h": "c"
+            "i2c_mcu.h": "c"
         },
     },
     "tasks": {
