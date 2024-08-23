@@ -105,24 +105,56 @@ struct leds
 	}
 }
 
+/**
+ * @brief Converts a decimal number to a BCD array.
+ *
+ * This function takes a decimal number, the number of digits, and a pointer to an array.
+ * It converts the decimal number to a BCD array and stores it in the provided array.
+ *
+ * @param data The decimal number to be converted.
+ * @param digits The number of digits in the decimal number.
+ * @param bcd_number A pointer to the array where the BCD array will be stored.
+ *
+ * @return Returns 0 if the conversion is successful.
+ */
 int8_t convertToBcdArray(uint32_t data, uint8_t digits, uint8_t * bcd_number) {
  
     for (int8_t i = digits - 1; i >= 0; i--) {
         bcd_number[i] = (data % 10); 
         data /= 10;
     }
+ while(n>2)
+ {
+    
+ }
 
     return 0;
 }
 
 void app_main(void){
-	LedsInit();
+/*	LedsInit();
 	LedsOffAll();
 	 my_leds.mode=TOGGLE;
 	 my_leds.n_led=3;
 	 my_leds.n_ciclos=1000;
-	 my_leds.periodo=100;
+	 my_leds.periodo=100;     
+		 control_led(&my_leds);*/
 
-    control_led(&my_leds);
+
+
+		 uint8_t bcd_number[4];
+		uint32_t data=12345;
+        convertToBcdArray(data, 4, &bcd_number);
+          printf("Muestro por consola: ");
+	printf("%d",bcd_number[0]);
+	printf("%d",bcd_number[1]);
+	printf("%d",bcd_number[2]);
+	printf("\n");        
+
+   
+
 }
+
+
+
 /*==================[end of file]============================================*/
