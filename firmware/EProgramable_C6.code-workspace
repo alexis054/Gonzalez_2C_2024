@@ -35,6 +35,9 @@
         },
         {
             "path": "projects/Proyecto2_MedirDistancia"
+        },
+        {
+            "path": "projects/Proyecto2_MedirDistanciaConInterrupciones"
         }
     ],
     "settings": {
