@@ -38,6 +38,12 @@
         },
         {
             "path": "projects/Proyecto2_MedirDistanciaConInterrupciones"
+        },
+        {
+            "path": "projects/Proyecto2_MedirDistanciaPuertoSerie"
+        },
+        {
+            "path": "projects/Proyecto2_Osciloscopio"
         }
     ],
     "settings": {
