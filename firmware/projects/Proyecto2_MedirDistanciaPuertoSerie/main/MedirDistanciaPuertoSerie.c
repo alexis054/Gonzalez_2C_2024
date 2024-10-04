@@ -1,8 +1,8 @@
 /**
- * @file main.c
- * @brief Cree un nuevo proyecto en el que modifique la actividad del punto 1 de manera de utilizar interrupciones para el control de las teclas y el control de tiempos (Timers).
- * @author <NAME>
- * @date 2023-01-01
+ * @file MedirDistanciaPuertoSerie.c
+ * @brief Main file for the application that measures the distance and controls the LEDs.
+ * @author Alexis Gonzalez
+ * @date 10-04-2024
  */
 /*==================[inclusions]=============================================*/
 #include <stdio.h>
@@ -163,7 +163,7 @@ void app_main(void){
 	 TimerInit(&timerA);
 
 	xTaskCreate(&MedirDistancia, "MedirDistancia", 2048, NULL, 5, &MedirDistancia_task_handle);
-	//xTaskCreate(&LeerTeclas, "LeerTeclas", 2048, NULL, 5, &LeerTeclas_task_handle);
+
 
 	TimerStart(timerA.timer);
 }

@@ -1,8 +1,12 @@
-/*
-Cree un nuevo proyecto en el que modifique la actividad del
- punto 1 de manera de utilizar interrupciones para el control de las teclas y el control de tiempos (Timers). 
-
-
+/**
+ * @file MedirDistanciaConInterrupciones.c
+ * @brief This file contains a program that measures distance using interruptions.
+ *
+ * This program initializes peripherals, such as sensors, LEDs, switches, and a timer, to measure distance using an ultrasonic sensor (HC-SR04) and display it on an LCD screen.
+ * It also controls LEDs based on the measured distance and allows for activation and holding of the distance measurement process through switches.
+ *
+ * @author Gonzalez Alexis
+ * @date 10-04-2022
  */
 /*==================[inclusions]=============================================*/
 #include <stdio.h>
@@ -28,11 +32,19 @@ bool Hold=false;
 /*==================[internal data definition]===============================*/
 TaskHandle_t MedirDistancia_task_handle = NULL;
 /*==================[internal functions declaration]=========================*/
+/**
+ * @brief Timer callback function to give a task notification.
+ */
 void funcTimerA(void)
 {
 	vTaskNotifyGiveFromISR(MedirDistancia_task_handle,pdFALSE);
 
 }
+/**
+ * @brief Task to measure distance using the HC-SR04 sensor and control LEDs based on the distance.
+ *
+ * @param pvParameter Pointer to task parameters
+ */
 static void MedirDistancia(void *pvParameter)
 {
 
@@ -76,6 +88,11 @@ static void MedirDistancia(void *pvParameter)
 		}
 	}
 }
+/**
+ * @brief Task to toggle a boolean flag passed as a parameter.
+ *
+ * @param pvParameter Pointer to a boolean flag to toggle.
+ */
 
  void LeerTeclas(void *pvParameter)
 {	
@@ -85,6 +102,9 @@ static void MedirDistancia(void *pvParameter)
 }		
 
 /*==================[external functions definition]==========================*/
+/**
+ * @brief Main function that initializes peripherals and creates tasks for distance measurement.
+ */
 void app_main(void){
 	
 	LedsInit();
@@ -106,7 +126,7 @@ void app_main(void){
 	 TimerInit(&timerA);
 
 	xTaskCreate(&MedirDistancia, "MedirDistancia", 2048, NULL, 5, &MedirDistancia_task_handle);
-	//xTaskCreate(&LeerTeclas, "LeerTeclas", 2048, NULL, 5, &LeerTeclas_task_handle);
+	
 
 	TimerStart(timerA.timer);
 }

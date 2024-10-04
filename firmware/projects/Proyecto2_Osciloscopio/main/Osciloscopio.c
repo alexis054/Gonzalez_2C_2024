@@ -1,13 +1,9 @@
 /**
- * @file main.c
+ * @file Osciloscopio.c
  * @brief Main file for the application that converts analog signals to digital and sends them to a serial plotter on the PC.
  *
  * @author Gonzalez Alexis
- * @date 2024-09-27
- */
-
-/**
- * @brief Includes necessary header files.
+ * @date 10-04-2022
  */
 #include <stdio.h>
 #include <stdint.h>
@@ -21,7 +17,7 @@
 /**
  * @brief Defines constants and macros.
  */
-#define BUFFER_SIZE 231
+#define BUFFER_SIZE 256
 #define CONFIG_MEASURE_PERIOD 2000
 
 /**
@@ -29,25 +25,24 @@
  */
 TaskHandle_t main_task_handle = NULL;
 TaskHandle_t ConvertirAD_task_handle = NULL;
-
-const char ecg[BUFFER_SIZE] = {
-    76, 77, 78, 77, 79, 86, 81, 76, 84, 93, 85, 80,
-    89, 95, 89, 85, 93, 98, 94, 88, 98, 105, 96, 91,
-    99, 105, 101, 96, 102, 106, 101, 96, 100, 107, 101,
-    94, 100, 104, 100, 91, 99, 103, 98, 91, 96, 105, 95,
-    88, 95, 100, 94, 85, 93, 99, 92, 84, 91, 96, 87, 80,
-    83, 92, 86, 78, 84, 89, 79, 73, 81, 83, 78, 70, 80, 82,
-    79, 69, 80, 82, 81, 70, 75, 81, 77, 74, 79, 83, 82, 72,
-    80, 87, 79, 76, 85, 95, 87, 81, 88, 93, 88, 84, 87, 94,
-    86, 82, 85, 94, 85, 82, 85, 95, 86, 83, 92, 99, 91, 88,
-    94, 98, 95, 90, 97, 105, 104, 94, 98, 114, 117, 124, 144,
-    180, 210, 236, 253, 227, 171, 99, 49, 34, 29, 43, 69, 89,
-    89, 90, 98, 107, 104, 98, 104, 110, 102, 98, 103, 111, 101,
-    94, 103, 108, 102, 95, 97, 106, 100, 92, 101, 103, 100, 94, 98,
-    103, 96, 90, 98, 103, 97, 90, 99, 104, 95, 90, 99, 104, 100, 93,
-    100, 106, 101, 93, 101, 105, 103, 96, 105, 112, 105, 99, 103, 108,
-    99, 96, 102, 106, 99, 90, 92, 100, 87, 80, 82, 88, 77, 69, 75, 79,
-    74, 67, 71, 78, 72, 67, 73, 81, 77, 71, 75, 84, 79, 77, 77, 76, 76,
+TaskHandle_t ConvertirDA_task_handle = NULL;
+unsigned char ecg[BUFFER_SIZE] = {
+17,17,17,17,17,17,17,17,17,17,17,18,18,18,17,17,17,17,17,17,17,18,18,18,18,18,18,18,17,17,16,16,16,16,17,17,18,18,18,17,17,17,17,
+18,18,19,21,22,24,25,26,27,28,29,31,32,33,34,34,35,37,38,37,34,29,24,19,15,14,15,16,17,17,17,16,15,14,13,13,13,13,13,13,13,12,12,
+10,6,2,3,15,43,88,145,199,237,252,242,211,167,117,70,35,16,14,22,32,38,37,32,27,24,24,26,27,28,28,27,28,28,30,31,31,31,32,33,34,36,
+38,39,40,41,42,43,45,47,49,51,53,55,57,60,62,65,68,71,75,79,83,87,92,97,101,106,111,116,121,125,129,133,136,138,139,140,140,139,137,
+133,129,123,117,109,101,92,84,77,70,64,58,52,47,42,39,36,34,31,30,28,27,26,25,25,25,25,25,25,25,25,24,24,24,24,25,25,25,25,25,25,25,
+24,24,24,24,24,24,24,24,23,23,22,22,21,21,21,20,20,20,20,20,19,19,18,18,18,19,19,19,19,18,17,17,18,18,18,18,18,18,18,18,17,17,17,17,
+17,17,17
+} ;
+int ECG_FREQUENCY = 4000;
+bool ecg_actualizar = false;
+int indice = 0;
+timer_config_t timer_ecg = {
+    .timer = TIMER_B,
+    .period = 0,
+    .func_p = NULL,
+    .param_p = NULL
 };
 
 /**
@@ -60,6 +55,11 @@ void FuncTimerA(void* param)
 {
     // Notify the ConvertirAD task to perform its task.
     vTaskNotifyGiveFromISR(ConvertirAD_task_handle, pdFALSE);
+}
+void FuncTimerB(void* param)
+{
+    // Notify the ConvertirAD task to perform its task.
+    vTaskNotifyGiveFromISR(ConvertirDA_task_handle, pdFALSE);
 }
 
 /**
@@ -79,7 +79,32 @@ static void ConvertirAD(void *param)
 
         // Convert the digital value to a string and send it to the PC via UART.
         UartSendString(UART_PC, (char *)UartItoa(lectura, 10));
-        UartSendString(UART_PC, "\r" );
+        UartSendString(UART_PC, "\r");
+    }
+}
+/**
+ * @brief Function to convert digital signals to analog and write them to the analog output.
+ *
+ * This function is responsible for converting digital signals to analog and writing them to the analog output.
+ * It continuously loops, waiting for a notification to start the conversion process.
+ *
+ * @param[in] param Unused parameter.
+ */
+static void ConvertirAAnalogico(void *param)
+{
+    while (true) {
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+
+        if (indice == BUFFER_SIZE) {
+            indice = 0;
+        }
+
+        uint8_t dato;
+        dato = ecg[indice];
+
+        AnalogOutputWrite(dato);
+
+        indice++;
     }
 }
 
@@ -88,29 +113,36 @@ static void ConvertirAD(void *param)
  */
 void app_main(void)
 {
-    analog_input_config_t analogic_input_config = 
+    analog_input_config_t analogic_input_config =
     {
-     .input = CH1,
-     .mode = ADC_SINGLE,   
+        .input = CH1,
+        .mode = ADC_SINGLE,
     };
 
     AnalogInputInit(&analogic_input_config);
     AnalogOutputInit();
 
-    serial_config_t serial_pc ={
-		.port = UART_PC,
-		.baud_rate = 115200,
-		.func_p = ConvertirAD,
-		.param_p = NULL,
-	};
-	UartInit(&serial_pc);
-    timer_config_t  timer_medicion = {
+    serial_config_t serial_pc = {
+        .port = UART_PC,
+        .baud_rate = 115200,
+        .func_p = ConvertirAD,
+        .param_p = NULL,
+    };
+    UartInit(&serial_pc);
+    timer_config_t timer_medicion = {
         .timer = TIMER_A,
         .period = CONFIG_MEASURE_PERIOD,
         .func_p = FuncTimerA,
         .param_p = NULL
     };
+
+    timer_ecg.period = ECG_FREQUENCY;
+    timer_ecg.func_p = FuncTimerB;
+
     TimerInit(&timer_medicion);
+    TimerInit(&timer_ecg);
     xTaskCreate(&ConvertirAD, "ConvertirAD", 2048, NULL, 5, &ConvertirAD_task_handle);
+    xTaskCreate(&ConvertirAAnalogico, "ConvertirAAnalogico", 2048, NULL, 5, &ConvertirDA_task_handle);
     TimerStart(timer_medicion.timer);
+    TimerStart(timer_ecg.timer);
 }
