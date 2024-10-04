@@ -36,7 +36,7 @@ unsigned char ecg[BUFFER_SIZE] = {
 17,17,17
 } ;
 int ECG_FREQUENCY = 4000;
-bool ecg_actualizar = false;
+
 int indice = 0;
 timer_config_t timer_ecg = {
     .timer = TIMER_B,
@@ -88,7 +88,7 @@ static void ConvertirAD(void *param)
  * This function is responsible for converting digital signals to analog and writing them to the analog output.
  * It continuously loops, waiting for a notification to start the conversion process.
  *
- * @param[in] param Unused parameter.
+ * @param[in] paramr.
  */
 static void ConvertirAAnalogico(void *param)
 {
