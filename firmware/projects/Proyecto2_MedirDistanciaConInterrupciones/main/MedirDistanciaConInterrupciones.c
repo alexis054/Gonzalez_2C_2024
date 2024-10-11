@@ -2,7 +2,7 @@
  * @file MedirDistanciaConInterrupciones.c
  * @brief This file contains a program that measures distance using interruptions.
  *
- * This program initializes peripherals, such as sensors, LEDs, switches, and a timer, to measure distance using an ultrasonic sensor (HC-SR04) and display it on an LCD screen.
+ * This program measures distance using an ultrasonic sensor (HC-SR04) and display it on an LCD screen.
  * It also controls LEDs based on the measured distance and allows for activation and holding of the distance measurement process through switches.
  *
  * @author Gonzalez Alexis

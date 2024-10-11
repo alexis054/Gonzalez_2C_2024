@@ -1,9 +1,14 @@
 /**
  * @file MedirDistanciaPuertoSerie.c
- * @brief Main file for the application that measures the distance and controls the LEDs.
+ * @brief This program measures distance using an ultrasonic sensor (HC-SR04),
+ * displays it on an LCD screen and sends it to a terminal via serial port.
+ * It controls LEDs based on the measured distance and allows for activation
+ * and holding of the distance measurement process through both physical switches
+ * and serial port commands.
  * @author Alexis Gonzalez
  * @date 10-04-2024
  */
+
 /*==================[inclusions]=============================================*/
 #include <stdio.h>
 #include <stdint.h>

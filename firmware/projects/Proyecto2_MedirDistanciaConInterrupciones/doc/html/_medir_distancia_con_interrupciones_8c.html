@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Medir distancia con interrupciones: Referencia del archivo C:/Repositorio/Gonzalez_2C_2024/firmware/projects/Proyecto2_MedirDistanciaConInterrupciones/main/MedirDistanciaConInterrupciones.c</title>
+<link rel="icon" href="icon.ico" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="fiuner.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">Medir distancia con interrupciones<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">se agregan interrupciones para medir la distancia</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.11.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_medir_distancia_con_interrupciones_8c.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">defines</a> &#124;
+<a href="#func-members">Funciones</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo MedirDistanciaConInterrupciones.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>This file contains a program that measures distance using interruptions.  
+<a href="#details">Más...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="hc__sr04_8h_source.html">hc_sr04.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="lcditse0803_8h_source.html">lcditse0803.h</a>&gt;</code><br />
+<code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
+<code>#include &quot;freertos/task.h&quot;</code><br />
+<code>#include &lt;<a class="el" href="led_8h_source.html">led.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="switch_8h_source.html">switch.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="timer__mcu_8h_source.html">timer_mcu.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="gpio__mcu_8h_source.html">gpio_mcu.h</a>&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+</div>
+<p><a href="_medir_distancia_con_interrupciones_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a5cf10d41cfee7ea378cacaa9ee3db07d" id="r_a5cf10d41cfee7ea378cacaa9ee3db07d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cf10d41cfee7ea378cacaa9ee3db07d">PERIODO_MEDICION</a>&#160;&#160;&#160;1000000</td></tr>
+<tr class="separator:a5cf10d41cfee7ea378cacaa9ee3db07d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a287cac0a1b8451e5eb62ef900f7e99bd" id="r_a287cac0a1b8451e5eb62ef900f7e99bd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a287cac0a1b8451e5eb62ef900f7e99bd">DISTANCIA_MENOR</a>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:a287cac0a1b8451e5eb62ef900f7e99bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca8e6e48a2a6ee49f99ec8a2825f65f" id="r_aaca8e6e48a2a6ee49f99ec8a2825f65f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaca8e6e48a2a6ee49f99ec8a2825f65f">DISTANCIA_MEDIA</a>&#160;&#160;&#160;20</td></tr>
+<tr class="separator:aaca8e6e48a2a6ee49f99ec8a2825f65f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bd4e03e947e65932b368c8f11bf1ac2" id="r_a3bd4e03e947e65932b368c8f11bf1ac2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3bd4e03e947e65932b368c8f11bf1ac2">DISTANCIA_MAXIMA</a>&#160;&#160;&#160;30</td></tr>
+<tr class="separator:a3bd4e03e947e65932b368c8f11bf1ac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a7681c75e37517f90f01b08b76a8e5cdd" id="r_a7681c75e37517f90f01b08b76a8e5cdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7681c75e37517f90f01b08b76a8e5cdd">funcTimerA</a> (void)</td></tr>
+<tr class="memdesc:a7681c75e37517f90f01b08b76a8e5cdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer callback function to give a task notification.  <br /></td></tr>
+<tr class="separator:a7681c75e37517f90f01b08b76a8e5cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4a25f66cbb556aeb122facb1c07f587" id="r_ae4a25f66cbb556aeb122facb1c07f587"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4a25f66cbb556aeb122facb1c07f587">LeerTeclas</a> (void *pvParameter)</td></tr>
+<tr class="memdesc:ae4a25f66cbb556aeb122facb1c07f587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Task to toggle a boolean flag passed as a parameter.  <br /></td></tr>
+<tr class="separator:ae4a25f66cbb556aeb122facb1c07f587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (void)</td></tr>
+<tr class="memdesc:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function that initializes peripherals and creates tasks for distance measurement.  <br /></td></tr>
+<tr class="separator:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ac623cdca7129dcb805e952474a888268" id="r_ac623cdca7129dcb805e952474a888268"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac623cdca7129dcb805e952474a888268">Activate</a> =true</td></tr>
+<tr class="separator:ac623cdca7129dcb805e952474a888268"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f04ac07235747b27bb12d512b37def" id="r_ae6f04ac07235747b27bb12d512b37def"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6f04ac07235747b27bb12d512b37def">Hold</a> =false</td></tr>
+<tr class="separator:ae6f04ac07235747b27bb12d512b37def"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7410ee7b2f957e38bc157b15f475aa6" id="r_aa7410ee7b2f957e38bc157b15f475aa6"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7410ee7b2f957e38bc157b15f475aa6">MedirDistancia_task_handle</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:aa7410ee7b2f957e38bc157b15f475aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>This file contains a program that measures distance using interruptions. </p>
+<p>This program measures distance using an ultrasonic sensor (HC-SR04) and display it on an LCD screen. It also controls LEDs based on the measured distance and allows for activation and holding of the distance measurement process through switches.</p>
+<dl class="section author"><dt>Autor</dt><dd>Gonzalez Alexis </dd></dl>
+<dl class="section date"><dt>Fecha</dt><dd>10-04-2022 </dd></dl>
+
+<p class="definition">Definición en el archivo <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html">MedirDistanciaConInterrupciones.c</a>.</p>
+</div><h2 class="groupheader">Documentación de «define»</h2>
+<a id="a3bd4e03e947e65932b368c8f11bf1ac2" name="a3bd4e03e947e65932b368c8f11bf1ac2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bd4e03e947e65932b368c8f11bf1ac2">&#9670;&#160;</a></span>DISTANCIA_MAXIMA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DISTANCIA_MAXIMA&#160;&#160;&#160;30</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00027">27</a> del archivo <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html">MedirDistanciaConInterrupciones.c</a>.</p>
+
+</div>
+</div>
+<a id="aaca8e6e48a2a6ee49f99ec8a2825f65f" name="aaca8e6e48a2a6ee49f99ec8a2825f65f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaca8e6e48a2a6ee49f99ec8a2825f65f">&#9670;&#160;</a></span>DISTANCIA_MEDIA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DISTANCIA_MEDIA&#160;&#160;&#160;20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00026">26</a> del archivo <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html">MedirDistanciaConInterrupciones.c</a>.</p>
+
+</div>
+</div>
+<a id="a287cac0a1b8451e5eb62ef900f7e99bd" name="a287cac0a1b8451e5eb62ef900f7e99bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a287cac0a1b8451e5eb62ef900f7e99bd">&#9670;&#160;</a></span>DISTANCIA_MENOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DISTANCIA_MENOR&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00025">25</a> del archivo <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html">MedirDistanciaConInterrupciones.c</a>.</p>
+
+</div>
+</div>
+<a id="a5cf10d41cfee7ea378cacaa9ee3db07d" name="a5cf10d41cfee7ea378cacaa9ee3db07d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cf10d41cfee7ea378cacaa9ee3db07d">&#9670;&#160;</a></span>PERIODO_MEDICION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PERIODO_MEDICION&#160;&#160;&#160;1000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00024">24</a> del archivo <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html">MedirDistanciaConInterrupciones.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00108">app_main()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de funciones</h2>
+<a id="a630544a7f0a2cc40d8a7fefab7e2fe70" name="a630544a7f0a2cc40d8a7fefab7e2fe70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a630544a7f0a2cc40d8a7fefab7e2fe70">&#9670;&#160;</a></span>app_main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void app_main </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Main function that initializes peripherals and creates tasks for distance measurement. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00108">108</a> del archivo <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html">MedirDistanciaConInterrupciones.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00029">Activate</a>, <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00038">funcTimerA()</a>, <a class="el" href="gpio__mcu_8h_source.html#l00054">GPIO_2</a>, <a class="el" href="gpio__mcu_8h_source.html#l00055">GPIO_3</a>, <a class="el" href="hc__sr04_8c_source.html#l00034">HcSr04Init()</a>, <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00030">Hold</a>, <a class="el" href="lcditse0803_8c_source.html#l00037">LcdItsE0803Init()</a>, <a class="el" href="led_8c_source.html#l00031">LedsInit()</a>, <a class="el" href="led_8c_source.html#l00105">LedsOffAll()</a>, <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00097">LeerTeclas()</a>, <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00033">MedirDistancia_task_handle</a>, <a class="el" href="ili9341_8c_source.html#l00019">NULL</a>, <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00024">PERIODO_MEDICION</a>, <a class="el" href="switch_8h_source.html#l00032">SWITCH_1</a>, <a class="el" href="switch_8h_source.html#l00033">SWITCH_2</a>, <a class="el" href="switch_8c_source.html#l00047">SwitchActivInt()</a>, <a class="el" href="switch_8c_source.html#l00029">SwitchesInit()</a>, <a class="el" href="timer__mcu_8h_source.html#l00040">timer_config_t::timer</a>, <a class="el" href="timer__mcu_8h_source.html#l00032">TIMER_A</a>, <a class="el" href="timer__mcu_8c_source.html#l00067">TimerInit()</a> y <a class="el" href="timer__mcu_8c_source.html#l00116">TimerStart()</a>.</p>
+
+</div>
+</div>
+<a id="a7681c75e37517f90f01b08b76a8e5cdd" name="a7681c75e37517f90f01b08b76a8e5cdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7681c75e37517f90f01b08b76a8e5cdd">&#9670;&#160;</a></span>funcTimerA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void funcTimerA </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Timer callback function to give a task notification. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00038">38</a> del archivo <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html">MedirDistanciaConInterrupciones.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00033">MedirDistancia_task_handle</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00108">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="ae4a25f66cbb556aeb122facb1c07f587" name="ae4a25f66cbb556aeb122facb1c07f587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4a25f66cbb556aeb122facb1c07f587">&#9670;&#160;</a></span>LeerTeclas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LeerTeclas </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Task to toggle a boolean flag passed as a parameter. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pvParameter</td><td>Pointer to a boolean flag to toggle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00097">97</a> del archivo <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html">MedirDistanciaConInterrupciones.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00108">app_main()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de variables</h2>
+<a id="ac623cdca7129dcb805e952474a888268" name="ac623cdca7129dcb805e952474a888268"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac623cdca7129dcb805e952474a888268">&#9670;&#160;</a></span>Activate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Activate =true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00029">29</a> del archivo <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html">MedirDistanciaConInterrupciones.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00108">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="ae6f04ac07235747b27bb12d512b37def" name="ae6f04ac07235747b27bb12d512b37def"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6f04ac07235747b27bb12d512b37def">&#9670;&#160;</a></span>Hold</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Hold =false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00030">30</a> del archivo <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html">MedirDistanciaConInterrupciones.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00108">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="aa7410ee7b2f957e38bc157b15f475aa6" name="aa7410ee7b2f957e38bc157b15f475aa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7410ee7b2f957e38bc157b15f475aa6">&#9670;&#160;</a></span>MedirDistancia_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t MedirDistancia_task_handle = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00033">33</a> del archivo <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html">MedirDistanciaConInterrupciones.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00108">app_main()</a> y <a class="el" href="_medir_distancia_con_interrupciones_8c_source.html#l00038">funcTimerA()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d9edf6c004b4a7ff14fe9ae7a92214ee.html">firmware</a></li><li class="navelem"><a class="el" href="dir_429d80758da54da73083af4edd40d0b3.html">projects</a></li><li class="navelem"><a class="el" href="dir_de1b838e8a66e611dad5d88e26331950.html">Proyecto2_MedirDistanciaConInterrupciones</a></li><li class="navelem"><a class="el" href="dir_1c96cf72d9705c1a613edfe6eeeae4bc.html">main</a></li><li class="navelem"><a class="el" href="_medir_distancia_con_interrupciones_8c.html">MedirDistanciaConInterrupciones.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
+  </ul>
+</div>
+</body>
+</html>

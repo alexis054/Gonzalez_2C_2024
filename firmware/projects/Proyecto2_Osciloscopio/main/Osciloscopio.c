@@ -1,7 +1,7 @@
 /**
  * @file Osciloscopio.c
- * @brief Main file for the application that converts analog signals to digital and sends them to a serial plotter on the PC.
- *
+ * @brief this files contains a program that converts analog signals to digital and sends them to a serial plotter on the PC.
+ *also it converts digital signals to analog and writes them to an analog output. 
  * @author Gonzalez Alexis
  * @date 10-04-2022
  */
