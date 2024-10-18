@@ -44,6 +44,9 @@
         },
         {
             "path": "projects/Proyecto2_Osciloscopio"
+        },
+        {
+            "path": "projects/SensorGSR"
         }
     ],
     "settings": {

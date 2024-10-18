@@ -95,7 +95,8 @@ static void ConvertirAAnalogico(void *param)
     while (true) {
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
-        if (indice == BUFFER_SIZE) {
+        if (indice == BUFFER_SIZE) 
+        {
             indice = 0;
         }
 
