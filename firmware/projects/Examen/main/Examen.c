@@ -158,7 +158,7 @@ static void ConvertirAD(void *param)
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 		
 		
-        // Read the analog signal from channel CH1 and store the digital value in the 'lectura' variable.
+       
         AnalogInputReadSingle(CH0, &X);
 		AnalogInputReadSingle(CH1, &Y);
 		AnalogInputReadSingle(CH2, &Z);
