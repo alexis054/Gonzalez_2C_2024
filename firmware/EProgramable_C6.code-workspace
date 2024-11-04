@@ -105,7 +105,16 @@
             "soc_caps.h": "c",
             "mpu6050.h": "c",
             "i2c_mcu.h": "c",
-            "stdio.h": "c"
+            "stdio.h": "c",
+            "compare": "c",
+            "cstdint": "c",
+            "atomic": "c",
+            "bit": "c",
+            "cstddef": "c",
+            "limits": "c",
+            "type_traits": "c",
+            "xutility": "c",
+            "new": "c"
         },
     },
     "tasks": {

@@ -1,0 +1,22 @@
+1)Explique la diferencia entre el tiempo de adquisición y el período de muestreo en el
+conversor A-D del microcontrolador ESP32-C6. ¿Cuál de los dos parámetros tuvo que
+configurar al realizar la Actividad 4? *(Ver Enunciado de la actividad 4 abajo).
+
+El periodo de muestreo es el periodo entre que se toman los valores de la señal analogica de entrada, este es el primer paso en la conversion analogico digital, el tiempo de adquisicion es el tiempo que se tarda en adquirir los valores ya digitalizados de esta señal,el muestreo es el primer paso, pero luego a ese muestreo hay que aproximarlo a valores y por ultimo a estos valores hay que pasarlos a binario
+
+
+2)Utilizando la documentación disponible en el adjunto identifique el número de pin del
+microcontrolador ESP32-C6 responsable de controlar el led D3 en el kit ESP-EDU
+
+El Gpio05 es el encargado de controlar el led D3
+
+
+3) Indique cuántos módulos UART tiene el microcontrolador ESP32-C6 y, considerando la
+configuración por defecto del driver, que módulo tiene Tx y Rx disponibles en el
+conector J2, pines GPIO16 y GPIO17 del esquemático de la placa
+
+Posee 3 modulos uart, uno de ellos para baja potencia. El uart 0 es el modulo que se encuentra con los canales tx y rx multiplexados con los GPIO16 Y 17 
+
+
+
+      
