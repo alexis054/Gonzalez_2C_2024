@@ -47,6 +47,9 @@
         },
         {
             "path": "projects/SensorGSR"
+        },
+        {
+            "path": "projects/Examen"
         }
     ],
     "settings": {

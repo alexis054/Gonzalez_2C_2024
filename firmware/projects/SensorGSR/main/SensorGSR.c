@@ -33,14 +33,17 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "led.h"
+#include <switch.h>
+
 /*==================[macros and definitions]=================================*/
 TaskHandle_t ConvertirAD_task_handle = NULL;
 #define CONFIG_MEASURE_PERIOD 1000
+#define MEASURE_PERIOD_SWITCH 1000000
 #define TRESHOLD_VALUE 250
-#define R_VALUE 500  // 1k ohm
-#define C_VALUE 0.00001  // 100uF
-#define ALPHA_VALUE (CONFIG_MEASURE_PERIOD / (R_VALUE * C_VALUE + CONFIG_MEASURE_PERIOD))
-float previous_filtered_value = 0;
+
+
+bool Activate=true;
+bool Hold=false;
 /*==================[internal data definition]===============================*/
 /**
  * @brief Function to be executed when the Timer A interrupt occurs.
@@ -54,11 +57,12 @@ void FuncTimerA(void* param)
     vTaskNotifyGiveFromISR(ConvertirAD_task_handle, pdFALSE);
 }
 
-float LowPassFilter(uint16_t current_value) {
-    float filtered_value = ALPHA_VALUE * previous_filtered_value + (1 - ALPHA_VALUE) * current_value;
-    previous_filtered_value = filtered_value;
-    return filtered_value;
+void FuncTimerB(void* param)
+{
+    // Notify the ConvertirAD task to perform its task.
+    vTaskNotifyGiveFromISR(ConvertirAD_task_handle, pdFALSE);
 }
+
 
 static void ConvertirAD(void *param)
 { while (1) {
@@ -67,12 +71,10 @@ static void ConvertirAD(void *param)
 
         uint16_t lectura;
         // Read the analog signal from channel CH1 and store the digital value in the 'lectura' variable.
+        if(Activate==true) 
         AnalogInputReadSingle(CH1, &lectura);
-
-        // Apply the low-pass filter
-        //float filtered_value = LowPassFilter(lectura);
-
-        // Check if the filtered value is below the threshold
+        else lectura=0;
+        
         if (lectura < TRESHOLD_VALUE) {
             // Turn on the LED
             LedOn(LED_1);
@@ -86,6 +88,13 @@ static void ConvertirAD(void *param)
         UartSendString(UART_PC, "\r");
     }
 }
+
+ void LeerTeclas(void *pvParameter)
+{	
+	bool *flag= (bool*) pvParameter;
+	*flag=!*flag;
+
+}	
 
 void app_main(void)
 {
@@ -106,6 +115,9 @@ void app_main(void)
         .param_p = NULL,
     };
     UartInit(&serial_pc);
+    SwitchActivInt(SWITCH_1, LeerTeclas, &Activate);
+	SwitchActivInt(SWITCH_2, LeerTeclas, &Hold);
+    
     timer_config_t timer_medicion = {
         .timer = TIMER_A,
         .period = CONFIG_MEASURE_PERIOD,
@@ -113,6 +125,12 @@ void app_main(void)
         .param_p = NULL
     };
 
+    timer_config_t timer_medicion = {
+        .timer = TIMER_A,
+        .period = MEASURE_PERIOD_SWITCH,
+        .func_p = FuncTimerB,
+        .param_p = NULL
+    };
 
     TimerInit(&timer_medicion);
 
