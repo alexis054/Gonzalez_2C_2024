@@ -50,6 +50,9 @@
         },
         {
             "path": "projects/Examen"
+        },
+        {
+            "path": "projects/Recuperatorio"
         }
     ],
     "settings": {
